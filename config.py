@@ -10,8 +10,5 @@ ADMIN_ID    = os.getenv("ADMIN_ID")
 GRUPO_ID    = os.getenv("GRUPO_ID")
 EXPORTS_DIR = os.getenv("EXPORTS_DIR", "exports")
 
-# IMPORTANTE: Ajuste para Render
-if 'RENDER' in os.environ:
-    DB_PATH = '/var/data/palpites.db'
-else:
-    DB_PATH = os.getenv("DB_PATH", "palpites_v2.db")
+# IMPORTANTE: No Render, use a variável de ambiente diretamente
+DB_PATH = os.getenv("DB_PATH", "palpites.db")
