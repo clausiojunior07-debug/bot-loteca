@@ -39,28 +39,25 @@ def safe_group_id():
     except:
         return int(str(GRUPO_ID).replace('"', "").replace("'", ""))
 
-# ---------------- START ----------------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
 
     if chat.type in ["group", "supergroup"]:
         await update.message.reply_text(
-            "🤖 *Bot da Loteca — v5*\n\n"
-            "Use o botão *PREENCHER PALPITES* quando a rodada for aberta.",
-            parse_mode="Markdown"
+            "🤖 Bot da Loteca — v5\n\n"
+            "Use o botão PREENCHER PALPITES quando a rodada for aberta."
         )
     else:
         await update.message.reply_text(
-            "🤖 *Bot da Loteca — v5*\n\n"
+            "🤖 Bot da Loteca — v5\n\n"
             "Comandos disponíveis:\n"
             "/nova_rodada (admin)\n"
             "/estatisticas\n"
             "/ver_palpites\n"
             "/meus_palpites\n\n"
-            "A planilha aparece *no grupo*, não aqui.",
-            parse_mode="Markdown"
+            "A planilha aparece no grupo, não aqui."
         )
-
+        
 # ------------------ CRIAR NOVA RODADA ------------------
 async def nova_rodada(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if str(update.effective_user.id) != ADMIN_ID:
@@ -581,3 +578,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
