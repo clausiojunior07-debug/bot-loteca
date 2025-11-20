@@ -1,12 +1,19 @@
 import sqlite3
-import json
-from datetime import datetime
+import os
 from config import DB_PATH
 
 class Database:
     def __init__(self):
+        # No Render, garante que o diretório existe
+        if 'RENDER' in os.environ:
+            db_dir = os.path.dirname(DB_PATH)
+            os.makedirs(db_dir, exist_ok=True)
+            print(f"📁 Criando diretório: {db_dir}")
+        
+        print(f"📊 Conectando ao banco: {DB_PATH}")
         self.conn = sqlite3.connect(DB_PATH, check_same_thread=False)
         self.create_tables()
+        print("✅ Banco de dados conectado com sucesso!")
     
     def create_tables(self):
         cursor = self.conn.cursor()
@@ -117,3 +124,4 @@ class Database:
             "estatisticas": estatisticas,
             "jogos": jogos
         }
+
